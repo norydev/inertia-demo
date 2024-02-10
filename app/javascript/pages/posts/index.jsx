@@ -2,6 +2,8 @@ import React from "react";
 import { usePage, Link } from "@inertiajs/react";
 import { posts as postsApi } from "@/api";
 
+import Form from "./_form";
+
 export default function Index() {
   const { posts } = usePage().props;
 
@@ -13,6 +15,11 @@ export default function Index() {
           <Link href={postsApi.show.path(post)}>{post.title}</Link>
         </h2>
       ))}
+
+      <hr />
+
+      {/* Let's add the form down here*/}
+      <Form />
     </div>
   );
 }

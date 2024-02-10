@@ -10,4 +10,10 @@ class PostsController < ApplicationController
 
     render inertia: "posts/show", props: { post: post }
   end
+
+  def create
+    Post.create!(params.require(:post).permit(:title, :body))
+
+    redirect_to posts_path
+  end
 end
