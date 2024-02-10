@@ -1,5 +1,6 @@
 import React from "react";
-import { usePage } from "@inertiajs/react";
+import { usePage, Link } from "@inertiajs/react";
+import { posts as postsApi } from "@/api";
 
 export default function Index() {
   const { posts } = usePage().props;
@@ -8,7 +9,9 @@ export default function Index() {
     <div>
       <h1>All my wonderful wisdom</h1>
       {posts.map((post) => (
-        <h2 key={post.id}>{post.title}</h2>
+        <h2 key={post.id}>
+          <Link href={postsApi.show.path(post)}>{post.title}</Link>
+        </h2>
       ))}
     </div>
   );

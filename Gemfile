@@ -37,6 +37,9 @@ gem "vite_rails"
 # Adds server side routing with JS components.
 gem "inertia_rails"
 
+# Easy use of routes in the frontend
+gem "js_from_routes"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

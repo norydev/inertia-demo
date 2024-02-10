@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   # equivalent to root path, will fetch javascript/pages/home/index.jsx
   inertia "/" => "home/index"
 
-  resources :posts, only: [:index]
+  # JS from routes exports
+  defaults export: true do
+    resources :posts, only: [:index, :show]
+  end
 end

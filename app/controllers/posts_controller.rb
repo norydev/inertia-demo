@@ -4,4 +4,10 @@ class PostsController < ApplicationController
 
     render inertia: "posts/index", props: { posts: posts }
   end
+
+  def show
+    post = Post.find(params[:id]).slice(:title, :body)
+
+    render inertia: "posts/show", props: { post: post }
+  end
 end
