@@ -3,7 +3,8 @@ import { useForm } from "@inertiajs/react";
 import { posts } from "@/api";
 
 export default function PostForm() {
-  const { data, processing, post, setData, reset } = useForm({
+  // retrieve `errors` here
+  const { data, processing, post, setData, reset, errors } = useForm({
     title: "",
     body: "",
   });
@@ -24,6 +25,10 @@ export default function PostForm() {
           value={data.title}
           onChange={(e) => setData("title", e.target.value)}
         />
+        {/* Display errors in the form */}
+        {errors.title && (
+          <div style={{ color: "red" }}>{errors.title.join(",")}</div>
+        )}
       </div>
       <div>
         <label htmlFor="body-input">Body</label>
@@ -33,6 +38,10 @@ export default function PostForm() {
           onChange={(e) => setData("body", e.target.value)}
           rows="4"
         ></textarea>
+        {/* Display errors in the form */}
+        {errors.body && (
+          <div style={{ color: "red" }}>{errors.body.join(",")}</div>
+        )}
       </div>
       <button type="submit" disabled={processing}>
         Create

@@ -12,8 +12,19 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create!(params.require(:post).permit(:title, :body))
+    authenticate_user! # example syntax using devise, redirects if fails
 
-    redirect_to posts_path
+    post = Post.new(params.require(:post).permit(:title, :body))
+
+    authorize post # example syntax using pundit, redirects if fails
+
+    if post.save
+      redirect_to posts_path
+    else
+      redirect_back(
+        fallback_location: posts_path,
+        inertia: { errors: post.errors.messages }
+      )
+    end
   end
 end
